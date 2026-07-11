@@ -1,93 +1,233 @@
-Customer Churn Prediction using Neural Networks:
-This repository contains a machine learning project that predicts customer churn for a bank using a neural network (Artificial Neural Network - ANN) built with TensorFlow/Keras.
+# 📊 Customer Churn Prediction
 
-___________________________________________________________________________________________________________________________________________________________________
+A Machine Learning-powered web application that predicts whether a telecom customer is likely to churn based on customer demographics, account information, and service usage. The project uses a trained Random Forest Classifier and provides predictions through a Flask web interface.
 
-📂 Dataset:
-The project uses the Churn_Modelling.csv dataset which contains information about bank customers. Key columns include:
-CreditScore – Customer's credit score
-Geography – Customer's location (Country)
-Gender – Male/Female
-Age – Customer's age
-Tenure – Number of years as a customer
-Balance – Account balance
-NumOfProducts – Number of products used
-HasCrCard – Whether the customer has a credit card (1 = Yes, 0 = No)
-IsActiveMember – Whether the customer is active (1 = Yes, 0 = No)
-EstimatedSalary – Customer's estimated salary
-Exited – Target variable (1 = churned, 0 = stayed)
+---
 
-___________________________________________________________________________________________________________________________________________________________________
+## 🚀 Features
 
-🛠️ Features Engineering:
-Removed unnecessary columns: RowNumber, CustomerId, Surname.
-Converted categorical variables into numerical using one-hot encoding for Geography and Gender.
-Split the dataset into features (X) and target (y).
+- Predicts customer churn in real time
+- User-friendly web interface built with Flask
+- Data preprocessing using Label Encoding and Standard Scaling
+- Random Forest Classifier for prediction
+- Displays churn probability along with prediction
+- Clean and responsive frontend
 
-___________________________________________________________________________________________________________________________________________________________________
+---
 
-⚙️ Data Preprocessing:
-Split data into training and test sets using train_test_split (80% train, 20% test).
-Scaled the features using StandardScaler for better neural network performance.
+## 📂 Project Structure
 
-___________________________________________________________________________________________________________________________________________________________________
+```
+customer_churn_predictor/
+│
+├── app.py                  # Flask application
+├── Customer-Churn.ipynb    # Data preprocessing, EDA & model training
+├── best_model.pkl          # Trained Random Forest model
+├── encoder.pkl             # Saved Label Encoders
+├── scaler.pkl              # Saved StandardScaler
+├── WA_Fn-UseC_-Telco-Customer-Churn.csv
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   └── style.css
+│
+├── requirements.txt
+└── README.md
+```
 
-🧠 Neural Network Model:
-The model was built using TensorFlow Keras Sequential API:
-Input layer: 11 neurons (matching feature count) with ReLU activation
-Hidden layer: 11 neurons, ReLU activation
-Output layer: 1 neuron, sigmoid activation (for binary classification)
+---
 
-___________________________________________________________________________________________________________________________________________________________________
+## 🛠️ Technologies Used
 
-🔧 Model Training:
-Loss function: binary_crossentropy
-Optimizer: Adam
-Metrics: accuracy
-Epochs: 100
-Batch size: 32
-Validation split: 20% of training data
-The model was trained on the scaled training data and monitored using training and validation loss/accuracy.
+### Programming Language
 
-___________________________________________________________________________________________________________________________________________________________________
+- Python
 
-📈 Performance:
-Model evaluation on test data using accuracy_score:
-accuracy_score(y_test, y_pred)
-Training and validation curves can be visualized with matplotlib to check for overfitting.
+### Libraries
 
-___________________________________________________________________________________________________________________________________________________________________
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- Flask
+- Pickle
 
-🧾 Predicting New Customer Churn:
-You can predict churn for a new customer by scaling their data and feeding it to the model:
-new_customer = pd.DataFrame(
-    [[650, 40, 3, 60000, 2, 1, 1, 50000, 0, 1, 1]],
-    columns=columns
-)
-new_customer_scaled = scaler.transform(new_customer)
-prob = model.predict(new_customer_scaled)[0][0]
-prediction = 1 if prob > 0.5 else 0
-Probability of churn: prob
-Predicted class: prediction (1 = churn, 0 = stay)
+### Machine Learning
 
-___________________________________________________________________________________________________________________________________________________________________
+- Random Forest Classifier
+- Label Encoding
+- StandardScaler
 
-🖼️ Visualizations:
-The training process can be visualized:
-Loss and validation loss
-Accuracy and validation accuracy
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
+---
 
-___________________________________________________________________________________________________________________________________________________________________
+## 📈 Dataset
 
-⚡ Requirements:
-Python 3.x
-pandas
-numpy
-scikit-learn
-matplotlib
-tensorflow
-Install dependencies via pip:  pip install pandas numpy scikit-learn matplotlib tensorflow
+Dataset Used:
+
+**Telco Customer Churn Dataset**
+
+The dataset contains customer demographic information, subscribed services, billing details, and churn status.
+
+Target Variable:
+
+- Churn
+
+Features include:
+
+- Gender
+- Senior Citizen
+- Partner
+- Dependents
+- Tenure
+- Phone Service
+- Multiple Lines
+- Internet Service
+- Online Security
+- Online Backup
+- Device Protection
+- Tech Support
+- Streaming TV
+- Streaming Movies
+- Contract Type
+- Paperless Billing
+- Payment Method
+- Monthly Charges
+- Total Charges
+
+---
+
+## ⚙️ Machine Learning Workflow
+
+1. Data Cleaning
+2. Exploratory Data Analysis (EDA)
+3. Label Encoding
+4. Feature Scaling
+5. Train-Test Split
+6. Model Training
+7. Hyperparameter Tuning
+8. Model Evaluation
+9. Model Saving using Pickle
+10. Flask Deployment
+
+---
+
+## 📊 Model Performance
+
+Model Used:
+
+- Random Forest Classifier
+
+Evaluation Metrics:
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC Score
+
+---
+
+## 💻 Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/customer_churn_predictor.git
+
+cd customer_churn_predictor
+```
+
+---
+
+### Create Virtual Environment
+
+Windows
+
+```bash
+python -m venv venv
+```
+
+Activate
+
+```bash
+venv\Scripts\activate
+```
+
+---
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Run the Application
+
+```bash
+python app.py
+```
+
+Open your browser and visit
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 📸 Application Workflow
+
+1. Enter customer details.
+2. Click **Predict Churn**.
+3. Model preprocesses the inputs.
+4. Random Forest predicts churn.
+5. Prediction probability is displayed.
+
+---
+
+## 🎯 Future Improvements
+
+- Deploy using Render or Railway
+- Docker support
+- REST API using FastAPI
+- User Authentication
+- Feature Importance Visualization
+- SHAP Explainability
+- Database Integration
+- Prediction History Dashboard
+
+---
+
+## 📚 Learning Outcomes
+
+This project demonstrates:
+
+- End-to-End Machine Learning Pipeline
+- Feature Engineering
+- Data Preprocessing
+- Model Serialization
+- Flask Deployment
+- Frontend-Backend Integration
+- Machine Learning Model Deployment
+
+---
+
+## 👨‍💻 Author
+
+**Aman Negi**
+
+- B.Tech Computer Science Engineering
+- DIT University
+- Aspiring Data Scientist | Machine Learning Enthusiast
+
+
+LinkedIn: https://www.linkedin.com/in/amanpy45/
+
+---
+
+## ⭐ If you found this project useful, don't forget to star the repository!
